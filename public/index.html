@@ -17,6 +17,7 @@
             $(document).ready(e=>initEventos());
         </script>
 </head>
+
 <body>
     <div class="container">
 	<div class="row">
@@ -26,201 +27,209 @@
                 </div>
             </div>           
         </div>
-            <nav class="navbar navbar-inverse bg-inverse"style="background-color: #141514; color: #141514">
+            <nav class="navbar navbar-inverse bg-inverse">
                 <div class="container-fluid">
-                   <ul class="nav navbar-nav"><a class="navbar-brand" href="#">SUDOKU</a>
-                        <li class="nav-item dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="opcOpciones" href="#Opciones">Opciones <span class="caret"></span></a>
-                            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" id="opcJugar" href="#">Juevo nuevo</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a class="dropdown-item" id="opcReset" href="#">Reiniciar</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a class="dropdown-item" id="opcSave" href="#">Guardar</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a class="dropdown-item" id="opcSolucion" href="#">Ver solucion</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a data-toggle="tab active" id="opcReglas" href="#Reglas">Reglas</a></li>
+                   <div class="navbar-header">
+                        <a class="navbar-brand inactive" href="#">SUDOKU</a>
+                   </div>
+                   <ul class="nav navbar-nav">
+                        <li><a class="active" id ="opcJugar" href="#">Juego</a></li>
+                        <li><a id ="opcOpciones" href="#">Opciones</a></li>
+                        <li><a class="active" id ="opcReglas" href="#">Reglas del juego</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li> <a data-toggle="tab"  id="opcAboutus" href="#Aboutus"> <span class="glyphicon glyphicon-log-out"></span>&nbsp About us</a></li>
+                        <li> <a data-toggle="tab"  id="opcAboutus" href="#"> 
+                                 <span class="glyphicon glyphicon-log-out"></span>&nbsp About us
+                        </a></li>
                     </ul>
                 </div>
             </nav>
-<div class="tab-content" >
-    <!--------------------------------------------------------------------------------------------------->
-    <!--- #REGLAS#--->
-    <div href="#" id="divReglas" class="tab-pane hide">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">Como jugar Sudoku?</h1>
+    <div class="tab-content" >
+        <!--------------------------------------------------------------------------------------------------->
+        <!--- #REGLAS#--->
+        <div href="#" id="divReglas" class="tab-pane">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Como jugar Sudoku?</h1>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <form class="in-line " role="form">
-                    <div class="form-group">
-                        <blockquote>
-                        <p class="text-justified text-muted">
-                        Este juego está compuesto por una cuadrícula de 9x9 casillas, dividida en regiones de 3x3 casillas. 
-                        Partiendo de algunos números ya dispuestos en algunas de las casillas, hay que completar las casillas 
-                        vacías con dígitos del 1 al 9 sin que se repitan por fila, columna o región.</p>
-                        <h2>Reglas:</h2>
-                        <p class="text-justified text-muted"><br><b>Regla 1:</b> hay que completar las casillas vacías con un solo número del 1 al 9.</br>
-                        <br><b>Regla 2:</b> en una misma fila no puede haber números repetidos.</br>
-                        <br><b>Regla 3:</b> en una misma columna no puede haber números repetidos.</br>
-                        <br><b>Regla 4:</b> en una misma región no puede haber números repetidos.</br>
-                        <br><b>Regla 5:</b> la solución de un sudoku es única.</br></p>
-                        </blockquote>
-                    </div>     
-                </form>
-            </div>   
-            <div class="col-md-6">
-                <form class="in-line " role="form">
-                    <div class="form-group">
-                        <label align = center ><IMG SRC="imgs/reglas.png"></label>
-                    </div>
-                </form>
-            </div>        
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="in-line " role="form">
+                        <div class="form-group">
+                            <blockquote>
+                            <p class="text-justified text-muted">
+                            Este juego está compuesto por una cuadrícula de 9x9 casillas, dividida en regiones de 3x3 casillas. 
+                            Partiendo de algunos números ya dispuestos en algunas de las casillas, hay que completar las casillas 
+                            vacías con dígitos del 1 al 9 sin que se repitan por fila, columna o región.</p>
+                            <h2>Reglas:</h2>
+                            <p class="text-justified text-muted"><br><b>Regla 1:</b> hay que completar las casillas vacías con un solo número del 1 al 9.</br>
+                            <br><b>Regla 2:</b> en una misma fila no puede haber números repetidos.</br>
+                            <br><b>Regla 3:</b> en una misma columna no puede haber números repetidos.</br>
+                            <br><b>Regla 4:</b> en una misma región no puede haber números repetidos.</br>
+                            <br><b>Regla 5:</b> la solución de un sudoku es única.</br></p>
+                            </blockquote>
+                        </div>     
+                    </form>
+                </div>   
+                <div class="col-md-6">
+                    <form class="in-line " role="form">
+                        <div class="form-group">
+                            <label align = center ><IMG SRC="imgs/reglas.png"></label>
+                        </div>
+                    </form>
+                </div>        
+        </div>	
     </div>	
-    
-    <!--------------------------------------------------------------------------------------------------->
-    <!--- #Jugar#--->
-    <div href="#Jugar" id="divJugar" class="tab-pane hide">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                <h1 class="text-center">A jugar!!!</h1>
-                    <table class="Table table-condensed table-bordered table-hover table-sm" style="border-color:#000000; background-color:#ffffff">
-                    <tr>
-                        <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
-                    </tr>
-                    <tr>
-                        <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
-                    </tr>
-                    <tr>
-                        <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
-                    </tr>
-                    <tr>
-                        <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
-                    </tr>
-                    <tr>
-                        <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
-                    </tr>
-                    <tr>
-                        <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
-                    </tr>
-                    <tr>
-                        <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
-                    </tr>
-                    <tr>
-                        <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
-                    </tr>
-                    <tr>
-                        <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
-                    </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                        <button type="button" class="btn btn-success btn-lg active" id="buttonGuardar">Guardar
-			</button>
-                        <button type="button" class="btn btn-warning btn-lg active" id="buttonGuardar">Reiniciar
-			</button>
-                        <button type="button" class="btn btn-primary btn-lg active" id="buttonGuardar">Terminar intento
-			</button>
-                        <button type="button" class="btn btn-info btn-lg active" id="buttonGuardar">Ver solucion
-			</button>
-                </div>
-             </div>
-	</div>
-    </div>
-	
-    <!--------------------------------------------------------------------------------------------------->
 
-      <!--- #OPCIONES#--->                                                    
-    <div href="#opcOpciones" id="divOpciones" class="tab-pane hide">
-        <div class="row">
-            <div class="col-md-6">
-                <form class="in-line" role="form">
-                    <div class="form-group"> 
+        <!--------------------------------------------------------------------------------------------------->
+        <!--- #Jugar#--->
+        <div href="#" id="divJugar" class="tab-pane">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <h1 class="text-center">A jugar!!!</h1>
+                        <table class="Table table-bordered table-hover " style="border-color:#000000; background-color:#ffffff">
+                        <tr>
+                            <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
+                        </tr>
+                        <tr>
+                            <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
+                        </tr>
+                        <tr>
+                            <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
+                        </tr>
+                        <tr>
+                            <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
+                        </tr>
+                        <tr>
+                            <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
+                        </tr>
+                        <tr>
+                            <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
+                        </tr>
+                        <tr>
+                            <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
+                        </tr>
+                        <tr>
+                            <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th>
+                        </tr>
+                        <tr>
+                            <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th> <th>1</th> <th class="cell">1</th>
+                        </tr>
+                        </table>
                     </div>
-                </form>
+                </div>
             </div>
-            <div class="col-md-6">
-                <form class="in-line" role="form">
-                </form>
-            </div>
-        </div>
-    </div>
-    <!--------------------------------------------------------------------------------------------------->
 
-<!--- #Nosotros#--->
-    <div href="#opcAboutus" id="divAboutus" class="tab-pane hide">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center lead">
-                    <strong>Paradigmas de programacion</strong></br>
-                    Heredia, Costa Rica</br>
-                    Universidad Nacional de Costa Rica</a>
-                </h1></br></br>
+            <div class="row">
+                <div class="col-md-6">
+                        <div class="form-group">
+                            <br><button type="button" class="btn btn-success btn-lg active" id="buttonCargar">Juego anterior
+                            </button></br>
+                            <br><button type="button" class="btn btn-success btn-lg active" id="buttonGuardar">Guardar Juego
+                            </button></br>
+                            <br><button type="button" class="btn btn-warning btn-lg active" id="buttonPista">Quiero una pista!
+                            </button></br>
+                            <br><button type="button" class="btn btn-warning btn-lg active" id="buttonReset">Reiniciar
+                            </button></br>
+                            <br><button type="button" class="btn btn-danger btn-lg active" id="buttonTerminar">Terminar intento
+                            </button></br>
+                            <br><button type="button" class="btn btn-info btn-lg active" id="buttonSolucion">Ver solucion
+                            </button></br>
+                        </div>
+                 </div>
             </div>
-            <div class="col-md-4">
-                <form class="in-line" role="form">
-                        <address>
-                            <strong>Daniel Mora Cordero </strong></br>
-                            Id: 1-1472-0950</br>
-                            Horario:10:00:00 a.m.</br>
-                            <a href="mailto:#">demc0992@gmail.com</a></br>
-                            <abbr title="Phone">Tel:</abbr> (+506) 8332-7258
-                        </address></br></br></br>
-                         <address>
-                            <strong>Elena Carolina Mora Cordero </strong></br>
-                            Id: 1-1553-0351</br>
-                            Horario:10:00:00 a.m.</br>
-                            <a href="mailto:#">carmc06@gmail.com</a></br>
-                            <abbr title="Phone">Tel:</abbr> (+506) 8622-3900
-                        </address>
-                </form>
+        </div>
+            
+        <!--------------------------------------------------------------------------------------------------->
+        <!--- #OPCIONES#--->                                                    
+        <div href="#" id="divOpciones" class="tab-pane">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="in-line" role="form">
+                        <div class="form-group"> 
+                            aaaaaaa
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form class="in-line" role="form">
+                        bbbbbbb
+                    </form>
+                </div>
             </div>
-            <div class="col-md-4">
-                <form class="in-line" role="form">
-                         <address>
-                            <strong>Greivin Rojas Hernandez </strong></br>
-                            Id:4-0211-0725</br>
-                            Horario:10:00:00 a.m.</br>
-                            <a href="mailto:#">gravenrrh123@gmail.com</a></br>
-                            <abbr title="Phone">Tel:</abbr> (+506) 8364-9396
-                        </address>
-                </form>
-            </div>
-            <div class="col-md-4">
-                <form class="in-line" role="form">
-                     <address>
-                            <strong>Johnny Chacon Gairaud </strong></br>
-                            Id:1-1555-0497</br>
-                            Horario:10:00:00 a.m.</br>
-                            <a href="mailto:#">geotarsis@gmail.com</a></br>
-                            <abbr tittle="Phone">Tel:</abbr> (+506) 7208-7543
-                        </address></br></br></br>
-                         <address>
-                            <strong>Cynthia Madrigal Quesada </strong></br>
-                            Id:1-1510-0465</br>
-                            Horario:10:00:00 a.m.</br>
-                            <a href="mailto:#">cmadrigal.3192@gmail.com</a></br>
-                            <abbr title="Phone">Tel:</abbr> (+506) 8701-7667
-                        </address>
-                </form>
+        </div>
+        <!--------------------------------------------------------------------------------------------------->
+        <!--- #Nosotros#--->
+        <div href="#" id="divAboutus" class="tab-pane">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center lead">
+                        <strong>Paradigmas de programacion</strong></br>
+                        Heredia, Costa Rica</br>
+                        Universidad Nacional de Costa Rica</a>
+                    </h1></br></br>
+                </div>
+                <div class="col-md-4">
+                    <form class="in-line" role="form">
+                        <div class="form-group"> 
+                            <address>
+                                <strong> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Daniel Mora Cordero </strong></br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Id: 1-1472-0950</br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
+                                <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp demc0992@gmail.com</a></br>
+                                <a title="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 8332-7258
+                            </address></br></br></br>
+                             <address>
+                                <strong>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Elena Carolina Mora Cordero </strong></br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Id: 1-1553-0351</br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
+                                <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp carmc06@gmail.com</a></br>
+                                <a title="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 8622-3900
+                            </address>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form class="in-line" role="form">
+                        <div class="form-group"> 
+                             <address>
+                                <strong>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Greivin Rojas Hernandez </strong></br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Id:4-0211-0725</br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
+                                <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp gravenrrh123@gmail.com</a></br>
+                                <a title="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 8364-9396
+                            </address>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form class="in-line" role="form">
+                        <div class="form-group"> 
+                            <address>
+                                <strong>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Johnny Chacon Gairaud </strong></br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Id:1-1555-0497</br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
+                                <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp geotarsis@gmail.com</a></br>
+                                <a tittle="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 7208-7543
+                            </address></br></br></br>
+                             <address>
+                                <strong>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Cynthia Madrigal Quesada </strong></br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Id:1-1510-0465</br>
+                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
+                                <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp cmadrigal.3192@gmail.com</a></br>
+                                <a title="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 8701-7667
+                            </address>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
+
 </body>
 <script>
 </script>
