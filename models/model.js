@@ -1,11 +1,23 @@
-var Schema=require('mongoose').Schema;
+var mongoose=require('mongoose'),
+Schema = mongoose.Schema;
 
 var sudoku=new Schema({
-	 generador:{type: Object}, //llega el arreglo del sudoku
-	 num:{type:String},//falta
-	 ip: {type: String, required: true},//falta
-	 id:{type:String, required: true}
+	
+	 generador:{
+		 dimensiones : { type: String}, 
+	     casillas : { type: Array},
+         numeros : { type: Array},
+         mapa : {type: Array}
+		 }, //guarda el generador
+		 
+	    dificultad : {type: String},
+		casillasPorOcultar : {type: String},
+		numeros : { type: Array},
+		filaActual : { type: String},
+		colActual : { type: String},
+	    ip: {type: String, required: true},
+	    id:{type:String, required: true}
 
 })
 
-module.exports=sudoku;
+module.exports = mongoose.model('model', sudoku);

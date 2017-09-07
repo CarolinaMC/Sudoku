@@ -3,19 +3,21 @@ const errConectClientM= -1;
 const errTrans        = -2;
 const success         =  0;
 const schema          = "sudoku";
-const url = 'reemplazar con link de conexión a base de datos';
+const url = 'mongodb://localhost/sudokus';
 /**************************************************/
 
 /*********************importaciones****************/
 const express    = require('express'),
-      db = require("./db/db");
+      //db = require("./db/db");
       bodyParser = require('body-parser'),
       app        = express(),
       morgan     = require('morgan'),
       fs         = require('fs'),
-      mongodb    = require('mongodb'),
+     //mongodb    = require('mongodb'),
+	  mongoose = require("mongoose"),
       sudoku     = require("./public/js/Sudoku"),
 	  generador     = require("./public/js/Generador");
+	  var sudokuCtrl = require('./sudokuController');
 	  
       
 console.log("require's: ok");
@@ -59,10 +61,25 @@ router.get('/', (req, res)=> {
 	res.json( { message: 'SUDOKU'} );	
 });
 
+router.route('/sudokus')
+  .get(sudokuCtrl.findAllSudokus)
+  .post(sudokuCtrl.addSudoku);
+
+  router.route('/sudokus/:id')
+  .get(sudokuCtrl.findSudokuById)
+  .put(sudokuCtrl.updateSudoku)
+  .delete(sudokuCtrl.deleteSudoku);
 
 /****************************iniciando el servidor*/
 app.use('/api', router);
-app.listen(port);
-console.log("server listo");
+
+mongoose.connect(url, function(err, res) {
+  if(err) {
+    console.log('ERROR: connecting to Database. ' + err);
+  }
+app.listen(port,function() {
+    console.log("Node server listo");
+  });
+});
 
 

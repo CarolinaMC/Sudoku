@@ -1,7 +1,7 @@
 const {Generador} = require('./Generador')
 const {Numero} = require('./Numero')
 const {Util} = require('./Util');
-const {Numero} = require('./Numero');
+
 const dificultades = {
       'Facil'   :  16,
 	  'Medio'   :  32,
