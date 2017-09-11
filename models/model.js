@@ -10,13 +10,13 @@ var sudoku=new Schema({
          mapa : {type: Array}
 		 }, //guarda el generador
 		 
-	    dificultad : {type: String},
+	  dificultad : {type: String},
 		casillasPorOcultar : {type: String},
 		numeros : { type: Array},
 		filaActual : { type: String},
 		colActual : { type: String},
-	    ip: {type: String, required: true},
-	    id:{type:String, required: true}
+	   // ip: {type: String, required: true}, aquino se de que tipo seria el req
+	    id:{type:Date, required: true}
 
 })
 

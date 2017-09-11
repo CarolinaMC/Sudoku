@@ -61,6 +61,14 @@ router.get('/', (req, res)=> {
 	res.json( { message: 'SUDOKU'} );	
 });
 
+///////////////////////////////////////////////////////////////////////////////
+// CONNECT TO DB
+mongoose.connect(url,
+                 {
+					 useMongoClient: true
+				 } 
+);
+
 router.route('/sudokus')
   .get(sudokuCtrl.findAllSudokus)
   .post(sudokuCtrl.addSudoku);
@@ -69,17 +77,14 @@ router.route('/sudokus')
   .get(sudokuCtrl.findSudokuById)
   .put(sudokuCtrl.updateSudoku)
   .delete(sudokuCtrl.deleteSudoku);
+  
 
 /****************************iniciando el servidor*/
 app.use('/api', router);
 
-mongoose.connect(url, function(err, res) {
-  if(err) {
-    console.log('ERROR: connecting to Database. ' + err);
-  }
 app.listen(port,function() {
-    console.log("Node server listo");
+    console.log("Node server listo" + port );
   });
-});
+
 
 
