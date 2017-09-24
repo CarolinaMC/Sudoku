@@ -8,7 +8,7 @@ const dificultades = {
 	  'Dificil' :  64
 }
 class Sudoku{
-	constructor(Generador,dificultad){
+	constructor(Generador,dificultad="Facil"){
 		this.Generador = Generador;
 		this.dificultad = dificultades[dificultad];
 		console.log(dificultad);
@@ -21,12 +21,13 @@ class Sudoku{
 		this.Generador = null;
 		this.id = "?";//agregar a la hora de guardar
 		this.ip = "?"; // obtener del request a la hora de guardar
+		let aux = this.casillas.filter(e=>!e.visible).length;
+		console.log("*****************"+aux);
 	}
 	init(){
 		this.casillas = this.numeros.map(
 			e=>this.getNumero()
 		);
-		this.casillas.forEach(e=>console.log(e));
 		this.ocultarElementos();
 	}
 	getNumero(){
@@ -78,6 +79,3 @@ class Sudoku{
 module.exports = {
 	Sudoku
 }
-
-
-m = new Sudoku(new Generador(),"Facil");

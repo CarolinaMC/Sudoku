@@ -5,18 +5,15 @@ var sudoku=new Schema({
 	
 	 generador:{
 		 dimensiones : { type: String}, 
-	     casillas : { type: Array},
          numeros : { type: Array},
+		 casillas : { type: Array},
          mapa : {type: Array}
 		 }, //guarda el generador
-		 
+	  casillas : { type: Array},	 
 	  dificultad : {type: String},
-		casillasPorOcultar : {type: String},
-		numeros : { type: Array},
-		filaActual : { type: String},
-		colActual : { type: String},
+	  numeros : { type: Array},
 	   // ip: {type: String, required: true}, aquino se de que tipo seria el req
-	    id:{type:Date, required: true}
+	  id:{type:Date, required: true}
 
 })
 

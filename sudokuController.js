@@ -23,9 +23,9 @@ exports.findSudokuById = function(req, res) {
 
 exports.addSudoku = function(req, res) {
 	console.log('POST');
-	console.log(req.body);
+	console.log(req.params.dificultad);
 	
-	let dificultad = req.body.dificultad;
+	let dificultad = req.params.dificultad;
 	var generador = new Generador();
 
 	var sudoku = new Sudoku(generador,dificultad);
@@ -40,23 +40,21 @@ exports.addSudoku = function(req, res) {
          numeros : generador.numeros,
          mapa : generador.mapa
 		 }, //guarda el generador
-		 
+	  casillas : sudoku.casillas,	 
 	  dificultad : sudoku.dificultad,
-		casillasPorOcultar : sudoku.casillasPorOcultar,
-		numeros : sudoku.numeros,
-		filaActual : sudoku.filaActual,
-		colActual : sudoku.colActual,
-	    ip: sudoku.ip,
-	    id: sudoku.id
+	  numeros : sudoku.numeros,
+	  ip: sudoku.ip,
+	  id: sudoku.id
 	}) 
 
 	model.save(function(err, sudoku) {
 		if(err) { 
-		console.log("error"+ err)
-		return res.status(500).send( err.message);
-		}    
-		
-    res.status(200).jsonp(sudoku);
+			console.log("error"+ err)
+			return res.status(500).send( err.message);
+		} 
+		sudoku.generador = null;		
+		res.status(200)
+		   .json({sudoku:sudoku});
 	});
 };
 
