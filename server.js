@@ -69,8 +69,8 @@ mongoose.connect(url,
 				 } 
 );
 
-router.route('/sudokus')
-  .get(sudokuCtrl.findAllSudokus)
+router.route('/game/:dificultad')
+  /*.get(sudokuCtrl.findAllSudokus)*/
   .post(sudokuCtrl.addSudoku);
 
   router.route('/sudokus/:id')
@@ -82,9 +82,10 @@ router.route('/sudokus')
 /****************************iniciando el servidor*/
 app.use('/api', router);
 
-app.listen(port,function() {
+
+app.listen(port,(err,res)=> {
     console.log("Node server listo" + port );
-  });
+});
 
 
-
+console.log("***Server corriendo***");

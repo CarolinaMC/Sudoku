@@ -1,0 +1,11 @@
+netstat -ano | find "8080"
+si da resultados -> algo esta corriendo en el puerto -> ver el ultimo numero que dice
+sino -> cambiar las variables "port" del cliente y el server a 9090
+
+tasklist | find #elNumero
+taskkill /F /PID #elNumero
+->si no sirve, 
+-> abrir el cmd desde el buscador de windows como administrador (click derecho)
+-> sino, abrir el administrador del sistema, y buscar el proceso a mano <-- esta es más rápido, pero con el # pueden saber cual es exactamente el 
+	proceso que hay que matar
+
