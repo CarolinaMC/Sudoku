@@ -1,13 +1,6 @@
 var a;
 const initEventos=()=>{
-    $("#opcJugar").click(e=>{
-       /* $("#divJugar").show();
-        $("#divReglas").hide();
-        $("#divOpciones").hide();
-        $("#divAboutus").hide();
-		//prepararSudoku();*/
-   })
-   
+    control = new Control();
    $(".btnDificultad").click(e=>{
 	  $("#divJugar").show();
         $("#divReglas").hide();
@@ -43,14 +36,18 @@ const initEventos=()=>{
 }
 
 const prepararSudoku=(dificultad)=>{
-	fetch(`http://${host}:${port}/${api}/${rutaAdd}/${dificultad}`,{
-				method: 'POST',
-		})
-		  .then(res=>res.json())
-		  .then(sdk=>{
-			view.init(sdk);  
-		  })
-	
+	juegoLocal  ? control.sudokuLocal()
+				:fetch(`http://${host}:${port}/${api}/${rutaAdd}/${dificultad}`,{
+							method: 'POST',
+					})
+					  .then(res=>res.json())
+					  .then(sdk=>{
+						control.setSudoku(sdk); 
+					  })
+					  .catch(ex=>{
+						control.sudokuLocal();
+					  });
+
 }
 
 

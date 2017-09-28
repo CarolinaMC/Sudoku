@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var SUDOKU  = require('./models/model');
- Sudoku     = require("./public/js/Sudoku").Sudoku,
- Generador    = require("./public/js/Generador").Generador; // {Generator : ...}
+    Sudoku     = require("./public/js/Sudoku").Sudoku,
+    Generador    = require("./public/js/Generador").Generador; // {Generator : ...}
 
 exports.findAllSudokus = function(req, res) {
 	SUDOKU.find(function(err, sudokus) {
@@ -33,7 +33,7 @@ exports.addSudoku = function(req, res) {
 	sudoku.ip = req;
 	// var model = new SUDOKU();
 	
-	var model= new SUDOKU({
+	let model= new SUDOKU({
 		generador:{
 		 dimensiones : generador.dimensiones, 
 	     casillas : generador.casillas,
@@ -47,11 +47,12 @@ exports.addSudoku = function(req, res) {
 	  id: sudoku.id
 	}) 
 
-	model.save(function(err, sudoku) {
+	model.save((err, sudoku)=>{
 		if(err) { 
 			console.log("error"+ err)
 			return res.status(500).send( err.message);
 		} 
+		//for(p in )
 		sudoku.generador = null;		
 		res.status(200)
 		   .json({sudoku:sudoku});

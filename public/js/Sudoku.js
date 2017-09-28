@@ -60,7 +60,7 @@ class Sudoku{
 				let rand = Util.rand(0,this.numeros.length-1);
 				//selecciona un valor random
 				let elemento = this.numeros.splice(rand,1);
-				this.casillas[elemento].valor = 0;
+				//this.casillas[elemento].valor = 0;
 				this.casillas[elemento].visible = false;
 			}
 		);

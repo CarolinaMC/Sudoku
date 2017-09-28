@@ -8,6 +8,7 @@
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/eventos.js"></script>
 		<script src="js/view.js"></script>
+		<script src="js/Control.js"></script>
 		<script src="js/constantes.js"></script>
       <!--   <link href="Css/bootstrap-theme.min.css" rel="stylesheet">-->
       <!--   <script src="js/bootstrap.min.js"></script>-->
@@ -28,16 +29,16 @@
         </script>
 </head>
 
-<body>
+<body  class="item active" style="background-image:url(imgs/sdkbg.jpg)">
     <div class="container">
 	<div class="row">
             <div class="col-md-12">
                 <div class = "page-header">
-                    <p>&nbsp </p> <img src="imgs/logo2.jpg" class="center-block logo">
+                   <h1 class="display-1"><p style="text-align: center; letter-spacing: 140px; font-size: 100px; COLOR:coral;"> SUDOKU </p></h1> 
                 </div>
             </div>           
         </div>
-            <nav class="navbar navbar-inverse bg-inverse">
+            <nav class="navbar navbar-expand-sm navbar" style="color: #ffffff; background: coral; opacity:0.6; box-shadow:inset 4px 4px 6px 6px #F78181;">
                 <div class="container-fluid">
                    <div class="navbar-header">
                         <a class="navbar-brand inactive" href="#">SUDOKU</a>
@@ -58,7 +59,7 @@
                     </ul>
                 </div>
             </nav>
-    <div class="tab-content" >
+    <div class="tab-content">
         <!--------------------------------------------------------------------------------------------------->
         <!--- #REGLAS#--->
         <div href="#" id="divReglas" class="tab-pane">
@@ -102,131 +103,144 @@
         <div href="#" id="divJugar" class="tab-pane">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group">
+                    <div class="in-line" role="form">
                     <h1 class="text-center">A jugar!!!</h1>
-                        <table id="tablero" class="Table table-bordered table-hover " style="width:50%;border-color:#000000; background-color:#ffffff">
-                        <tr>
-                            <th class="cell" id="f0c0" >0</th>
-							<th id="f0c1" >1</th>
-							<th class="cell" id="f0c2" >2</th>
-							<th id="f0c3" >3</th>
-							<th class="cell" id="f0c4" >4</th>
-							<th id="f0c5" >5</th>
-							<th class="cell" id="f0c6" >6</th>
-							<th id="f0c7" >7</th>
-							<th class="cell" id="f0c8">8</th>
+                        <table id="tablero" class="Table table-bordered table-hover rounded" style="width:100%;border-color:#000000; background-color:#ffffff; text-align:center">
+                        <tr >
+                            <th class="cell bordeSuperior" 
+								id="f0c0" >0</th>
+							<th class="cell bordeSuperior"
+								id="f0c1" >1</th>
+							<th class="cell bordeDerecho bordeSuperior"
+								id="f0c2" >2</th>
+							<th class="bordeSuperior"
+								id="f0c3" >3</th>
+							<th class="bordeSuperior"
+								id="f0c4" >4</th>
+							<th class="bordeDerecho bordeSuperior"
+								id="f0c5" >5</th>
+							<th class="cell bordeSuperior" 
+								id="f0c6" >6</th>
+							<th class="cell bordeSuperior" 
+								id="f0c7" >7</th>
+							<th class="cell bordeDerecho bordeSuperior"
+								id="f0c8">8</th>
                         </tr>
                         <tr>
-							<th id="f1c0" >0</th>
-							<th class="cell" id="f1c1" >1</th>
-							<th id="f1c2" >2</th>
-							<th class="cell" id="f1c3" >3</th>
+							<th class="cell"id="f1c0" >0</th>
+							<th class="cell"id="f1c1" >1</th>
+							<th class="cell"id="f1c2" >2</th>
+							<th id="f1c3" >3</th>
 							<th id="f1c4" >4</th>
-							<th class="cell" id="f1c5" >5</th>
-							<th id="f1c6" >6</th>
-							<th class="cell"  id="f1c7" >7</th>
-							<th id="f1c8">8</th>
+							<th id="f1c5" >5</th>
+							<th class="cell" id="f1c6" >6</th>
+							<th class="cell" id="f1c7" >7</th>
+							<th class="cell" id="f1c8">8</th>
                         </tr>
-						<tr>
+                        <tr>
                             <th class="cell" id="f2c0" >0</th>
-							<th id="f2c1" >1</th>
+							<th class="cell"id="f2c1" >1</th>
 							<th class="cell" id="f2c2" >2</th>
 							<th id="f2c3" >3</th>
-							<th class="cell" id="f2c4" >4</th>
+							<th id="f2c4" >4</th>
 							<th id="f2c5" >5</th>
 							<th class="cell" id="f2c6" >6</th>
-							<th id="f2c7" >7</th>
+							<th class="cell" id="f2c7" >7</th>
 							<th class="cell" id="f2c8">8</th>
                         </tr>
                         <tr>
 							<th id="f3c0" >0</th>
-							<th class="cell" id="f3c1" >1</th>
+							<th id="f3c1" >1</th>
 							<th id="f3c2" >2</th>
 							<th class="cell" id="f3c3" >3</th>
-							<th id="f3c4" >4</th>
+							<th class="cell" id="f3c4" >4</th>
 							<th class="cell" id="f3c5" >5</th>
 							<th id="f3c6" >6</th>
-							<th class="cell"  id="f3c7" >7</th>
+							<th id="f3c7" >7</th>
 							<th id="f3c8">8</th>
                         </tr>
-						<tr>
-                            <th class="cell" id="f4c0" >0</th>
+			<tr>
+                            <th id="f4c0" >0</th>
 							<th id="f4c1" >1</th>
-							<th class="cell" id="f4c2" >2</th>
-							<th id="f4c3" >3</th>
+							<th id="f4c2" >2</th>
+							<th class="cell" id="f4c3" >3</th>
 							<th class="cell" id="f4c4" >4</th>
-							<th id="f4c5" >5</th>
-							<th class="cell" id="f4c6" >6</th>
+							<th class="cell" id="f4c5" >5</th>
+							<th id="f4c6" >6</th>
 							<th id="f4c7" >7</th>
-							<th class="cell" id="f4c8">8</th>
+							<th id="f4c8">8</th>
                         </tr>
                         <tr>
 							<th id="f5c0" >0</th>
-							<th class="cell" id="f5c1" >1</th>
+							<th id="f5c1" >1</th>
 							<th id="f5c2" >2</th>
 							<th class="cell" id="f5c3" >3</th>
-							<th id="f5c4" >4</th>
+							<th class="cell" id="f5c4" >4</th>
 							<th class="cell" id="f5c5" >5</th>
 							<th id="f5c6" >6</th>
-							<th class="cell"  id="f5c7" >7</th>
+							<th id="f5c7" >7</th>
 							<th id="f5c8">8</th>
                         </tr>
-						<tr>
+			<tr>
                             <th class="cell" id="f6c0" >0</th>
-							<th id="f6c1" >1</th>
+							<th class="cell"id="f6c1" >1</th>
 							<th class="cell" id="f6c2" >2</th>
 							<th id="f6c3" >3</th>
-							<th class="cell" id="f6c4" >4</th>
+							<th id="f6c4" >4</th>
 							<th id="f6c5" >5</th>
 							<th class="cell" id="f6c6" >6</th>
-							<th id="f6c7" >7</th>
+							<th class="cell"id="f6c7" >7</th>
 							<th class="cell" id="f6c8">8</th>
                         </tr>
                         <tr>
-							<th id="f7c0" >0</th>
+							<th class="cell" id="f7c0" >0</th>
 							<th class="cell" id="f7c1" >1</th>
-							<th id="f7c2" >2</th>
-							<th class="cell" id="f7c3" >3</th>
+							<th class="cell" id="f7c2" >2</th>
+							<th id="f7c3" >3</th>
 							<th id="f7c4" >4</th>
-							<th class="cell" id="f7c5" >5</th>
-							<th id="f7c6" >6</th>
-							<th class="cell"  id="f7c7" >7</th>
-							<th id="f7c8">8</th>
+							<th id="f7c5" >5</th>
+							<th class="cell" id="f7c6" >6</th>
+							<th class="cell" id="f7c7" >7</th>
+							<th class="cell" id="f7c8">8</th>
                         </tr>
-						<tr>
+			<tr>
                             <th class="cell" id="f8c0" >0</th>
-							<th id="f8c1" >1</th>
+							<th class="cell"id="f8c1" >1</th>
 							<th class="cell" id="f8c2" >2</th>
 							<th id="f8c3" >3</th>
-							<th class="cell" id="f8c4" >4</th>
+							<th id="f8c4" >4</th>
 							<th id="f8c5" >5</th>
 							<th class="cell" id="f8c6" >6</th>
-							<th id="f8c7" >7</th>
+							<th class="cell" id="f8c7" >7</th>
 							<th class="cell" id="f8c8">8</th>
 
                         </table>
                     </div>
                 </div>
             </div>
-
-            <div class="row">
+            <div class="row" style="width 100%; display:inline">
                 <div class="col-md-6">
-                        <div class="form-group">
-                            <br><button type="button" class="btn btn-success btn-lg active" id="buttonCargar">Juego anterior
-                            </button></br>
-                            <br><button type="button" class="btn btn-success btn-lg active" id="buttonGuardar">Guardar Juego
-                            </button></br>
-                            <br><button type="button" class="btn btn-warning btn-lg active" id="buttonPista">Quiero una pista!
-                            </button></br>
-                            <br><button type="button" class="btn btn-warning btn-lg active" id="buttonReset">Reiniciar
-                            </button></br>
-                            <br><button type="button" class="btn btn-danger btn-lg active" id="buttonTerminar">Terminar intento
-                            </button></br>
-                            <br><button type="button" class="btn btn-info btn-lg active" id="buttonSolucion">Ver solucion
-                            </button></br>
+                        <div role="form">
+                            <input type="radio">Offline
+                            <input type="radio">In-line
+                        </div>
+                        <div class="btn-group-vertical">
+                            <button type="button" class="btn btn-success btn-lg active" id="buttonCargar">Juego anterior
+                            </button>
+                            <button type="button" class="btn btn-success btn-lg active" id="buttonGuardar">Guardar Juego
+                            </button>
+                            <button type="button" class="btn btn-warning btn-lg active" id="buttonPista">Quiero una pista!
+                            </button>
+                            <button type="button" class="btn btn-warning btn-lg active" id="buttonReset">Reiniciar
+                            </button>
+                            <button type="button" class="btn btn-danger btn-lg active" id="buttonTerminar">Terminar intento
+                            </button>
+                            <button type="button" class="btn btn-info btn-lg active" id="buttonSolucion">Ver solucion
+                            </button>
                         </div>
                  </div>
             </div>
+
         </div>
             
         <!--------------------------------------------------------------------------------------------------->
@@ -258,7 +272,7 @@
                         Universidad Nacional de Costa Rica</a>
                     </h1></br></br>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <form class="in-line" role="form">
                         <div class="form-group"> 
                             <address>
@@ -278,7 +292,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <form class="in-line" role="form">
                         <div class="form-group"> 
                              <address>
@@ -287,19 +301,6 @@
                                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
                                 <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp gravenrrh123@gmail.com</a></br>
                                 <a title="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 8364-9396
-                            </address>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <form class="in-line" role="form">
-                        <div class="form-group"> 
-                            <address>
-                                <strong>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Johnny Chacon Gairaud </strong></br>
-                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Id:1-1555-0497</br>
-                                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Horario:10:00:00 a.m.</br>
-                                <a href="mailto:#">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp geotarsis@gmail.com</a></br>
-                                <a tittle="Phone">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Tel:</a> (+506) 7208-7543
                             </address></br></br></br>
                              <address>
                                 <strong>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Cynthia Madrigal Quesada </strong></br>
@@ -315,21 +316,21 @@
         </div>
     </div>
     </div>
-		<div id="myModal" class="modal fade" role="dialog">
+		<div id="myModal" class="modal fade" style="background-image:url(imgs/sdkbg2.jpg); background-repeat: no-repeat; background-position: center; background-size: cover;;" role="dialog"> 
 		<div class="modal-dialog">
 
 		<!-- Modal content-->
 		<div class="modal-content">
-		  <div class="modal-header">
+		  <div class="modal-header bg-success">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 			<h4 class="modal-title">Seleccione la dificultad</h4>
 		  </div>
-		  <div class="modal-body">
+		  <div class="modal-body bg-warning">
 			<button class ="btn btn-success btnDificultad" id="btnFacil">Fácil</button>
 			<button class ="btn btn-warning btnDificultad" id="btnMedio">Medio</button>
 			<button class ="btn btn-danger btnDificultad"  id="btnDificil">Difícil</button>
 		  </div>
-		  <div class="modal-footer">
+		  <div class="modal-footer bg-success">
 			<button type="button" class="btn btn-default" data-dismiss="modal" id="btnModalCancelar">Cancelar</button>
 		  </div>
 		</div>
@@ -337,7 +338,6 @@
 		</div>
 		</div>
 	
-
 </body>
 <script>
 </script>

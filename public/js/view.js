@@ -6,24 +6,24 @@ class View{
 		this.modelo = sudoku;
 		if(this.modelo === undefined)
 			throw "Sudoku no recuperado correctamente del servidor";
-		this.modelo.sudoku.casillas.forEach(casillita=>{
+		this.modelo.sudoku.casillas.forEach((casillita,indice)=>{
 			let key = `#f${casillita.fila}c${casillita.columna}`;
 			$(key).text("");
 			
 			$(key).append(
 				casillita.visible?
 				`<div class="elemento">${casillita.valor}</div>`
-				:`<div class="elementoNv"> <input class="caja"/>  </div>`);
-				
-		});
-		//this.novisibles();
+				:`<div class="elementoNv"> <input id="caja_${indice}" class="caja"/>  </div>`);
+						
+		});		
+		this.eventoCaja();
 	}
-	/*
-	novisibles(){
-		$(".elementoNV").focus(ev=>{
-			$(`#C${ev.target.id}`).show();
-
+	eventoCaja(){
+		$(".caja").change(e=>{
+			let key = e.target.id.slice(5);
+			this.modelo.sudoku.casillas[key].valor = $("#"+e.target.id)[0].value;
+			//console.log("se cambio el valor a un "+this.modelo.sudoku.casillas[key].valor);
 		});
-		
-	}*/
+	}
+
 }
