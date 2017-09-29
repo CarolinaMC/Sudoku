@@ -61,14 +61,16 @@ exports.addSudoku = function(req, res) {
 
 exports.updateSudoku = function(req, res) {
 	SUDOKU.findById(req.params.id, function(err, sudoku) {
-		let generador;
 		
-		generador.dimensiones = req.body.dimensiones;
-		        casillas = req.body.casillas;
-		        numeros = req.body.numeros;
-		        mapa = req.body.mapa;
+		console.log('entra el put');
+		sudoku.generador.dimensiones = req.body.dimensiones;
+		console.log('dimensiones');
+		sudoku.generador.casillas = req.body.casillas;
+		sudoku.generador.numeros = req.body.numeros;
+		sudoku.generador.mapa = req.body.mapa;
+		console.log('cargo el generador')
 				//cargo el genereador
-		        sudoku.generador = generador;
+		       // sudoku.generador = generador;
                 sudoku.dificultad = req.body.dificultad;
 		        sudoku.casillasPorOcultar = req.body.casillasPorOcultar;
 		        sudoku.numeros = req.body.numeros;
@@ -77,10 +79,11 @@ exports.updateSudoku = function(req, res) {
 		        sudoku.colActual = req.params.colActual;
 				sudoku.id =  new Date().getTime();
 	            //sudoku.ip = req;
+				console.log('cargo el sudoku')
 
 		sudoku.save(function(err) {
 			if(err) return res.status(500).send(err.message);
-      res.status(200).jsonp(tvshow);
+      res.status(200).jsonp({sudoku:sudoku});
 		});
 	});
 };
