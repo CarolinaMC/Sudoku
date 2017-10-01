@@ -5,11 +5,11 @@
         <LINK REL=StyleSheet HREF="style.css"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/constantes.js"></script>
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/eventos.js"></script>
 		<script src="js/view.js"></script>
 		<script src="js/Control.js"></script>
-		<script src="js/constantes.js"></script>
       <!--   <link href="Css/bootstrap-theme.min.css" rel="stylesheet">-->
       <!--   <script src="js/bootstrap.min.js"></script>-->
        <!--  <link href="Css/bootstrap.min.css" rel="stylesheet">-->
@@ -31,17 +31,23 @@
 
 <body  class="item active" style="background-image:url(imgs/sdkbg.jpg)">
     <div class="container">
-	<div class="row">
+	<div class="row" id="header">
             <div class="col-md-12">
                 <div class = "page-header">
-                   <h1 class="display-1"><p style="text-align: center; letter-spacing: 140px; font-size: 100px; COLOR:coral;"> SUDOKU </p></h1> 
+                   <h1 class="display-1">
+								<p style="text-align: center; letter-spacing: 140px; font-size: 100px; COLOR:coral;"> 
+									SUDOKU
+								</p></h1> 
                 </div>
             </div>           
-        </div>
+    </div>
             <nav class="navbar navbar-expand-sm navbar" style="color: #ffffff; background: coral; opacity:0.6; box-shadow:inset 4px 4px 6px 6px #F78181;">
                 <div class="container-fluid">
                    <div class="navbar-header">
-                        <a class="navbar-brand inactive" href="#">SUDOKU</a>
+                        <a class="navbar-brand inactive"
+						   href="#"
+						   id="btn_sudoku">
+								<span id="flechita" class="glyphicon glyphicon-chevron-up">SUDOKU</a>
                    </div>
                    <ul class="nav navbar-nav">
                         <li><a class="active" 
@@ -100,20 +106,23 @@
 
         <!--------------------------------------------------------------------------------------------------->
         <!--- #Jugar#--->
-        <div href="#" id="divJugar" class="tab-pane">
+       
+
+
+	   <div href="#" id="divJugar" class="tab-pane">
             <div class="row">
                 <div class="col-md-6">
                     <div class="in-line" role="form">
                     <h1 class="text-center">A jugar!!!</h1>
                         <table id="tablero" class="Table table-bordered table-hover rounded" style="width:100%;border-color:#000000; background-color:#ffffff; text-align:center">
-                        <tr >
-                            <th class="cell bordeSuperior" 
+                        <tr>
+                            <th class="cell bordeSuperior bordeIzquierdo" 
 								id="f0c0" >0</th>
 							<th class="cell bordeSuperior"
 								id="f0c1" >1</th>
 							<th class="cell bordeDerecho bordeSuperior"
 								id="f0c2" >2</th>
-							<th class="bordeSuperior"
+							<th class="bordeSuperior "
 								id="f0c3" >3</th>
 							<th class="bordeSuperior"
 								id="f0c4" >4</th>
@@ -127,48 +136,49 @@
 								id="f0c8">8</th>
                         </tr>
                         <tr>
-							<th class="cell"id="f1c0" >0</th>
+							<th class="cell bordeIzquierdo"id="f1c0" >0</th>
 							<th class="cell"id="f1c1" >1</th>
-							<th class="cell"id="f1c2" >2</th>
+							<th class="cell bordeDerecho"id="f1c2" >2</th>
 							<th id="f1c3" >3</th>
 							<th id="f1c4" >4</th>
-							<th id="f1c5" >5</th>
+							<th class="bordeDerecho"id="f1c5" >5</th>
 							<th class="cell" id="f1c6" >6</th>
 							<th class="cell" id="f1c7" >7</th>
-							<th class="cell" id="f1c8">8</th>
+							<th class="cell bordeDerecho" id="f1c8">8</th>
                         </tr>
                         <tr>
-                            <th class="cell" id="f2c0" >0</th>
-							<th class="cell"id="f2c1" >1</th>
-							<th class="cell" id="f2c2" >2</th>
-							<th id="f2c3" >3</th>
-							<th id="f2c4" >4</th>
-							<th id="f2c5" >5</th>
-							<th class="cell" id="f2c6" >6</th>
-							<th class="cell" id="f2c7" >7</th>
-							<th class="cell" id="f2c8">8</th>
+                            <th class="cell bordeIzquierdo bordeInferior" id="f2c0" >0</th>
+							<th class="cell bordeInferior"id="f2c1" >1</th>
+							<th class="cell bordeInferior bordeDerecho" id="f2c2" >2</th>
+							<th class="bordeInferior"id="f2c3" >3</th>
+							<th class="bordeInferior"id="f2c4" >4</th>
+							<th class="bordeInferior bordeDerecho"id="f2c5" >5</th>
+							<th class="cell bordeInferior" id="f2c6" >6</th>
+							<th class="cell bordeInferior" id="f2c7" >7</th>
+							<th class="cell bordeInferior bordeDerecho" id="f2c8">8</th>
                         </tr>
+						
                         <tr>
-							<th id="f3c0" >0</th>
+							<th class="bordeIzquierdo" id="f3c0" >0</th>
 							<th id="f3c1" >1</th>
-							<th id="f3c2" >2</th>
+							<th class ="bordeDerecho" id="f3c2" >2</th>
 							<th class="cell" id="f3c3" >3</th>
 							<th class="cell" id="f3c4" >4</th>
-							<th class="cell" id="f3c5" >5</th>
+							<th class="cell bordeDerecho" id="f3c5" >5</th>
 							<th id="f3c6" >6</th>
 							<th id="f3c7" >7</th>
-							<th id="f3c8">8</th>
+							<th class ="bordeDerecho" id="f3c8">8</th>
                         </tr>
-			<tr>
-                            <th id="f4c0" >0</th>
+						<tr>
+                            <th class="bordeIzquierdo" id="f4c0" >0</th>
 							<th id="f4c1" >1</th>
-							<th id="f4c2" >2</th>
+							<th class ="bordeDerecho" id="f4c2" >2</th>
 							<th class="cell" id="f4c3" >3</th>
 							<th class="cell" id="f4c4" >4</th>
-							<th class="cell" id="f4c5" >5</th>
+							<th class="cell bordeDerecho" id="f4c5" >5</th>
 							<th id="f4c6" >6</th>
 							<th id="f4c7" >7</th>
-							<th id="f4c8">8</th>
+							<th class ="bordeDerecho" id="f4c8">8</th>
                         </tr>
                         <tr>
 							<th id="f5c0" >0</th>
@@ -181,7 +191,8 @@
 							<th id="f5c7" >7</th>
 							<th id="f5c8">8</th>
                         </tr>
-			<tr>
+						
+						<tr>
                             <th class="cell" id="f6c0" >0</th>
 							<th class="cell"id="f6c1" >1</th>
 							<th class="cell" id="f6c2" >2</th>
@@ -203,7 +214,7 @@
 							<th class="cell" id="f7c7" >7</th>
 							<th class="cell" id="f7c8">8</th>
                         </tr>
-			<tr>
+						<tr>
                             <th class="cell" id="f8c0" >0</th>
 							<th class="cell"id="f8c1" >1</th>
 							<th class="cell" id="f8c2" >2</th>
@@ -215,14 +226,17 @@
 							<th class="cell" id="f8c8">8</th>
 
                         </table>
-                    </div>
+                    
+					
+</div>
                 </div>
-            </div>
-            <div class="row" style="width 100%; display:inline">
+				
+				            <div class="row" style="width 100%; display:inline">
                 <div class="col-md-6">
                         <div role="form">
-                            <input type="radio">Offline
-                            <input type="radio">In-line
+                            <input type="radio" name="estadoEnLinea" class="radioEstado" id="Offline">Offline
+                            <input type="radio" name="estadoEnLinea" class="radioEstado" 
+								 checked="true" id="InLine">In-line
                         </div>
                         <div class="btn-group-vertical">
                             <button type="button" class="btn btn-success btn-lg active" id="buttonCargar">Juego anterior
@@ -239,6 +253,10 @@
                             </button>
                         </div>
                  </div>
+            </div>
+				
+				
+				
             </div>
 
         </div>

@@ -1,6 +1,6 @@
 var a;
 const initEventos=()=>{
-    control = new Control();
+   control = new Control();
    $(".btnDificultad").click(e=>{
 	  $("#divJugar").show();
         $("#divReglas").hide();
@@ -32,11 +32,23 @@ const initEventos=()=>{
         $("#divOpciones").show();
         $("#divAboutus").hide();
    })
+   $("#btn_sudoku").click(e=>  $("#header").is(":visible") ?
+							    (	$("#header").slideUp( 300 ).delay( 800 ),
+									$("#flechita").removeClass("glyphicon-chevron-up"),
+									$("#flechita").addClass("glyphicon-chevron-down")
+								)
+							   :(	$("#header").slideDown(300 ).delay( 800 ).fadeIn(),
+									$("#flechita").removeClass("glyphicon-chevron-down"),
+									$("#flechita").addClass("glyphicon-chevron-up")
+								)
+								 
+					     );
+	$(".radioEstado").change(e=>control.ajustarLocal(e.target.checked));					 
       
 }
 
 const prepararSudoku=(dificultad)=>{
-	juegoLocal  ? control.sudokuLocal()
+	control.juegoLocal  ? control.sudokuLocal()
 				:fetch(`http://${host}:${port}/${api}/${rutaAdd}/${dificultad}`,{
 							method: 'POST',
 					})

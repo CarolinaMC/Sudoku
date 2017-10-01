@@ -11,9 +11,8 @@ var sudoku=new Schema({
 		 }, //guarda el generador
 	  casillas : { type: Array},	 
 	  dificultad : {type: String},
-	  numeros : { type: Array},
-	   // ip: {type: String, required: true}, aquino se de que tipo seria el req
-	  id:{type:Date, required: true}
+	  numeros : { type: Array}
+	 // ip: {type: String, required: true}
 
 })
 

@@ -57,7 +57,16 @@ img{
 	border-bottom: 1px solid coral;
 }
 
-
+.caja{
+	width:100%;
+	height: 50px;
+	opacity:0.3;
+	text-align:center;
+	color:blue;
+}
+.elementoNv{
+	height:100%;
+}
 
 
 

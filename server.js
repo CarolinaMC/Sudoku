@@ -70,21 +70,24 @@ mongoose.connect(url,
 );
 
 router.route('/game/:dificultad')
-  /*.get(sudokuCtrl.findAllSudokus)*/
+  .get(sudokuCtrl.findAllSudokus)
   .post(sudokuCtrl.addSudoku);
 
-  router.route('/sudokus/:id')
+router.route('/sudokus/:id')
   .get(sudokuCtrl.findSudokuById)
   .put(sudokuCtrl.updateSudoku)
   .delete(sudokuCtrl.deleteSudoku);
-  
+
+
+router.route('/deleteAll')
+        .delete(sudokuCtrl.deleteAll);  
 
 /****************************iniciando el servidor*/
 app.use('/api', router);
 
 
 app.listen(port,(err,res)=> {
-    console.log("Node server listo" + port );
+    console.log("Node server listo " + port );
 });
 
 

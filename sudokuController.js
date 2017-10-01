@@ -17,7 +17,7 @@ exports.findSudokuById = function(req, res) {
     if(err) return res.send(500, err.message);
 
     console.log('GET /sudoku/' + req.params.id);
-		res.status(200).jsonp(sudoku);
+		res.status(200).jsonp({sudoku:sudoku});
 	});
 };
 
@@ -42,9 +42,8 @@ exports.addSudoku = function(req, res) {
 		 }, //guarda el generador
 	  casillas : sudoku.casillas,	 
 	  dificultad : sudoku.dificultad,
-	  numeros : sudoku.numeros,
-	  ip: sudoku.ip,
-	  id: sudoku.id
+	  numeros : sudoku.numeros
+	 // ip: sudoku.ip
 	}) 
 
 	model.save((err, sudoku)=>{
@@ -52,7 +51,7 @@ exports.addSudoku = function(req, res) {
 			console.log("error"+ err)
 			return res.status(500).send( err.message);
 		} 
-		//for(p in )
+		let schema = sudoku.schema;
 		sudoku.generador = null;		
 		res.status(200)
 		   .json({sudoku:sudoku});
@@ -93,3 +92,12 @@ exports.deleteSudoku = function(req, res) {
 		})
 	});
 };
+
+
+
+exports.deleteAll = (req,res)=>
+	SUDOKU.remove({}, err=> 
+            (err)?console.log(err)
+				 :res.end('success')    
+    );
+

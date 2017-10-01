@@ -19,7 +19,6 @@ class Sudoku{
 		this.colActual = 0;
 		this.init();
 		this.Generador = null;
-		this.id = "?";//agregar a la hora de guardar
 		this.ip = "?"; // obtener del request a la hora de guardar
 		let aux = this.casillas.filter(e=>!e.visible).length;
 		console.log("*****************"+aux);
