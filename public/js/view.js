@@ -13,8 +13,11 @@ class View{
 			$(key).append(
 				casillita.visible?
 				`<div class="elemento">${casillita.valor}</div>`
-				:`<input type="number" min="1" max="9" pattern="[1,9]" id="caja_${indice}" class="caja"/>`);
+				:(casillita.seDigito === undefined) ?
+					`<input type="number" min="1" max="9" pattern="[1,9]" id="caja_${indice}" class="caja"/>`
+					:`<input type="number" value="${casillita.valorDigitado}" min="1" max="9" pattern="[1,9]" id="caja_${indice}" class="caja"/>`
 						
+			);
 		});		
 		this.eventoCaja();
 	}
@@ -25,7 +28,8 @@ class View{
 			let key = e.target.id.slice(5);
 			let value =  $("#"+e.target.id)[0].value;
 			value = expresion.test(value) ? value : "";
-			this.modelo.sudoku.casillas[key].valor = value
+			this.modelo.sudoku.casillas[key].valorDigitado = value;
+			this.modelo.sudoku.casillas[key].seDigito = (value !== "");
 			$("#"+e.target.id)[0].value = value;
 		});
 		$(".caja").keyup(e=>{
@@ -34,7 +38,8 @@ class View{
 			let value =  $("#"+e.target.id)[0].value;
 			value = value.length > 1 ? value.slice(0,1) : value;
 			value = expresion.test(value) ? value : "";
-			this.modelo.sudoku.casillas[key].valor = value
+			this.modelo.sudoku.casillas[key].valorDigitado = value;
+			this.modelo.sudoku.casillas[key].seDigito = (value !== "");
 			$("#"+e.target.id)[0].value = value;
 		});
 	}

@@ -1,4 +1,6 @@
-var a;
+const cierre=()=>{
+	control.guardarTodo();
+}
 const initEventos=()=>{
    control = new Control();
    $(".btnDificultad").click(e=>{

@@ -29,6 +29,7 @@ class Control{
 	guardarVariables(){
 		localStorage.setItem(path_sincronizado,this.sincronizado);
 		localStorage.setItem(path_ganado,this.juegoGanado);
+		localStorage.setItem(path_sudoku_id,this.view.modelo.sudoku._id);
 		localStorage.setItem(path_sudoku,JSON.stringify(this.view.modelo.sudoku));
 	}
 	setSudoku(sudoku){
@@ -52,9 +53,10 @@ class Control{
 	}
 	sudokuDB(){
 		let id 	= localStorage.getItem(path_sudoku_id);
-		id === undefined ? limpiarLocalStorage()
-						 : this.getSudoku(id);
-		
+		!this.ganado && id !== undefined  ? this.getSudoku(id)
+										  : this.limpiarLocalStorage();
+										 
+						 
 	}
 	getSudoku(id){
 		fetch(`http://${host}:${port}/${api}/${rutaGetById}/${id}`,{

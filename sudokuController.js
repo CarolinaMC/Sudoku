@@ -58,33 +58,22 @@ exports.addSudoku = function(req, res) {
 	});
 };
 
-exports.updateSudoku = function(req, res) {
-	SUDOKU.findById(req.params.id, function(err, sudoku) {
-		
-		console.log('entra el put');
-		sudoku.generador.dimensiones = req.body.dimensiones;
-		console.log('dimensiones');
-		sudoku.generador.casillas = req.body.casillas;
-		sudoku.generador.numeros = req.body.numeros;
-		sudoku.generador.mapa = req.body.mapa;
-		console.log('cargo el generador')
-				//cargo el genereador
-		       // sudoku.generador = generador;
-                sudoku.dificultad = req.body.dificultad;
-		        sudoku.casillasPorOcultar = req.body.casillasPorOcultar;
-		        sudoku.numeros = req.body.numeros;
-		        sudoku.casillas = req.body.casillas;
-		        sudoku.filaActual = req.body.filaActual;
-		        sudoku.colActual = req.params.colActual;
-				sudoku.id =  new Date().getTime();
-	            //sudoku.ip = req;
-				console.log('cargo el sudoku')
-
-		sudoku.save(function(err) {
-			if(err) return res.status(500).send(err.message);
-      res.status(200).jsonp({sudoku:sudoku});
-		});
-	});
+/*
+*Función encargada de guardar el estado del sudoku
+*recibe al sudoku en notación JSON en el parametro sudoku
+*retorna 200 en el caso de que se guardara bien
+*        500 en caso de algún fallo.
+*/
+exports.updateSudoku =(req, res)=>{
+	console.log("***GUARDANDO SUDOKU***");
+	let sudoku = JSON.parse(req.params.sudoku);
+	console.log(`--- ${sudoku._id}---`);
+	SUDOKU.findOneAndUpdate(
+					{_id:sudoku._id},
+					sudoku,
+					(err,ok)=> err ? res.send(500,{error:err})
+								   : res.status(200).jsonp({mensaje:"ok"})
+			);
 };
 
 exports.deleteSudoku = function(req, res) {

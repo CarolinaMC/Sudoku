@@ -75,8 +75,10 @@ router.route('/game/:dificultad')
 
 router.route('/sudokus/:id')
   .get(sudokuCtrl.findSudokuById)
-  .put(sudokuCtrl.updateSudoku)
   .delete(sudokuCtrl.deleteSudoku);
+  
+router.route('/save/:sudoku')
+	  .put(sudokuCtrl.updateSudoku);
 
 
 router.route('/deleteAll')
