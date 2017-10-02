@@ -20,6 +20,7 @@ class View{
 			);
 		});		
 		this.eventoCaja();
+		$("#divJugar").show();
 	}
 	eventoCaja(){
 		$(".caja").change(e=>{//el problema de este es que espera hasta que se abandone la casilla,
@@ -43,5 +44,10 @@ class View{
 			$("#"+e.target.id)[0].value = value;
 		});
 	}
-
+	clickOffLine(){
+		$("#Offline").click();
+	}
+	clickOnLine(){
+		$("#InLine").click();
+	}
 }

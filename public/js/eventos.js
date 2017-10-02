@@ -1,5 +1,5 @@
 const cierre=()=>{
-	control.guardarTodo();
+	control.guardarSudoku();
 }
 const initEventos=()=>{
    control = new Control();
@@ -47,6 +47,7 @@ const initEventos=()=>{
 					     );
 	$(".radioEstado").change(e=>control.ajustarLocal(e.target.checked));					 
       
+	$("#buttonGuardar").click(e=>control.guardarSudoku());  
 }
 
 const prepararSudoku=(dificultad)=>{
@@ -57,6 +58,7 @@ const prepararSudoku=(dificultad)=>{
 					  .then(res=>res.json())
 					  .then(sdk=>{
 						control.setSudoku(sdk); 
+						control.sincronizado = true;
 					  })
 					  .catch(ex=>{
 						control.sudokuLocal();

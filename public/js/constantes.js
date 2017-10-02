@@ -3,6 +3,7 @@ const api = "api";
 const host = "localhost";
 const rutaAdd = "game";
 const rutaGetById = "sudokus"
+const rutaSave="save"
 const facil = 'Facil';
 const medio = 'Medio';
 const dificil = 'Dificil';
