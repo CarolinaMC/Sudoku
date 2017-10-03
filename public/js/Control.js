@@ -1,3 +1,13 @@
+class Util{
+	/**
+		@param min numero minimo que se desea obtener en el random
+		@param max numero maximo que se desea obtener en el random
+		Genera un número random entre <<min>> y <<max>>
+	*/
+	static rand(min,max){
+		return parseInt(Math.random() * (max - min) + min);
+	}
+}
 class Control{
 	constructor(){
 		this.view = new View();
@@ -93,4 +103,29 @@ class Control{
 				this.sudokuLocal();
 			  });
 	}
+	pedirPista(){
+		/*recupera todos los elementos que no son visibles
+		  y que se les ha ingresado un valor, y dicho valor no es correcto
+		*/
+		let opciones = this.view
+						   .modelo
+						   .sudoku
+						   .casillas
+						   .filter(e=>!e.visible  && e.valor != e.valorDigitado);
+		opciones.length === 0 ? alert("agregar un mensaje bonito de que no hay pistas")
+							  : this.seleccionarPista(opciones);
+	}
+	seleccionarPista(opciones){
+		let dato = opciones[ Util.rand(0,opciones.length-1)];
+		dato.seDigito = true;
+		dato.valorDigitado = dato.valor;
+		let key =  `f${dato.fila}c${dato.columna}`;
+		let caja = $(`#${key} > :input`)[0];
+		caja.value = dato.valor;
+		this.view.marcarPista(caja.id);
+	}
 }
+
+
+
+

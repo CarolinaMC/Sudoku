@@ -16,6 +16,8 @@ const initEventos=()=>{
 		$("#btnModalCancelar").click();
    });
    
+   $("#buttonPista").click(e=>control.pedirPista());
+   
    $("#opcReglas").click(e=>{
         $("#divJugar").hide();
         $("#divReglas").show();

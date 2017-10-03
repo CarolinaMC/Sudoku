@@ -20,7 +20,7 @@
 		Genera un número random entre <<min>> y <<max>>
 	*/
 	static rand(min,max){
-		return Math.random() * (max - min) + min;
+		return parseInt(Math.random() * (max - min) + min);
 	}
 
 	/**

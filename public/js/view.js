@@ -14,8 +14,8 @@ class View{
 				casillita.visible?
 				`<div class="elemento">${casillita.valor}</div>`
 				:(casillita.seDigito === undefined) ?
-					`<input type="number" min="1" max="9" pattern="[1,9]" id="caja_${indice}" class="caja"/>`
-					:`<input type="number" value="${casillita.valorDigitado}" min="1" max="9" pattern="[1,9]" id="caja_${indice}" class="caja"/>`
+					`<input  id="caja_${indice}" class="caja"/>`
+					:`<input value="${casillita.valorDigitado}" id="caja_${indice}" class="caja"/>`
 						
 			);
 		});		
@@ -29,7 +29,7 @@ class View{
 			let key = e.target.id.slice(5);
 			let value =  $("#"+e.target.id)[0].value;
 			value = expresion.test(value) ? value : "";
-			this.modelo.sudoku.casillas[key].valorDigitado = value;
+			this.modelo.sudoku.casillas[key].valorDigitado = parseInt(value);
 			this.modelo.sudoku.casillas[key].seDigito = (value !== "");
 			$("#"+e.target.id)[0].value = value;
 		});
@@ -39,7 +39,7 @@ class View{
 			let value =  $("#"+e.target.id)[0].value;
 			value = value.length > 1 ? value.slice(0,1) : value;
 			value = expresion.test(value) ? value : "";
-			this.modelo.sudoku.casillas[key].valorDigitado = value;
+			this.modelo.sudoku.casillas[key].valorDigitado = parseInt(value);
 			this.modelo.sudoku.casillas[key].seDigito = (value !== "");
 			$("#"+e.target.id)[0].value = value;
 		});
@@ -49,5 +49,20 @@ class View{
 	}
 	clickOnLine(){
 		$("#InLine").click();
+	}
+	marcarOk(id){
+		$(`#${id}`).removeClass("cajaError");
+		$(`#${id}`).removeClass("cajaPista");
+		$(`#${id}`).addClass("cajaOk");
+	}
+	marcarError(id){
+		$(`#${id}`).removeClass("cajaOk");
+		$(`#${id}`).removeClass("cajaPista");
+		$(`#${id}`).addClass("cajaError");
+	}
+	marcarPista(id){
+		$(`#${id}`).removeClass("cajaError");
+		$(`#${id}`).removeClass("cajaOk");
+		$(`#${id}`).addClass("cajaPista");
 	}
 }
