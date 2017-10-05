@@ -28,13 +28,16 @@
 		Desordena de manera aleatora al arr 
 	*/
 	static desordenar(arr){
-		let desordenarAux=(array,indice)=>
-			indice === 0 ? array
+		let desordenarAux=(array,indice)=>{
+			console.log(`${array} - ${indice}`);
+			return indice === 0 ? array
 						 : desordenarAux(
-							array.concat(
-								array.splice(
+								array.concat(
+									array.splice(
 									Util.rand(0,indice),1))
-						   ,indice-1);
+								,indice-1
+							);
+		}
 		return desordenarAux(arr,arr.length-1);
 	}
 	static between(a,b,c){

@@ -50,6 +50,10 @@ const initEventos=()=>{
 	$(".radioEstado").change(e=>control.ajustarLocal(e.target.checked));					 
       
 	$("#buttonGuardar").click(e=>control.guardarSudoku());  
+	
+	$("#buttonVerificar").click(e=>control.verificarJugadas());
+	
+	$("#buttonReset").click(e=>control.resetear());
 }
 
 const prepararSudoku=(dificultad)=>{

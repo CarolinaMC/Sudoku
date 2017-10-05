@@ -50,19 +50,38 @@ class View{
 	clickOnLine(){
 		$("#InLine").click();
 	}
+	
+	animarCambioColor(elemento,letra,color){
+		this.animarEnSegundoPlano(
+			()=>$(`#${elemento}`).animate(
+					{
+						'backgroundColor' : color,
+						'color':letra
+					}
+					,2000
+					,()=>$(`#${elemento}`).animate(
+							{
+							'backgroundColor' : '#FFF',
+							'color':'blue'
+							}
+							,2000
+						)
+				)
+		)
+	}
+	animarEnSegundoPlano(accion){
+		setTimeout(
+			()=>accion(),0
+		);
+	}
+	
 	marcarOk(id){
-		$(`#${id}`).removeClass("cajaError");
-		$(`#${id}`).removeClass("cajaPista");
-		$(`#${id}`).addClass("cajaOk");
+		this.animarCambioColor(id,'#B404AE','#81F79F');;
 	}
 	marcarError(id){
-		$(`#${id}`).removeClass("cajaOk");
-		$(`#${id}`).removeClass("cajaPista");
-		$(`#${id}`).addClass("cajaError");
+		this.animarCambioColor(id,'#4000FF','#FA5858');
 	}
 	marcarPista(id){
-		$(`#${id}`).removeClass("cajaError");
-		$(`#${id}`).removeClass("cajaOk");
-		$(`#${id}`).addClass("cajaPista");
+		this.animarCambioColor(id,'#0040FF','#F4FA58');
 	}
 }

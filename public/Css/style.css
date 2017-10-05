@@ -65,20 +65,6 @@ img{
 	color:blue;
 }
 
-.cajaPista{
-	background-color:#F4FA58;
-	color:#0040FF;
-}
-.cajaOk{
-	background-color:#81F79F;
-	color:#B404AE;
-}
-.cajaError{
-	background-color:#FA5858;
-	color:#4000FF;
-}
-
-
 .elementoNv{
 	height:100%;
 }

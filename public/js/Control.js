@@ -124,6 +124,42 @@ class Control{
 		caja.value = dato.valor;
 		this.view.marcarPista(caja.id);
 	}
+	
+	verificarJugadas(){
+		this.view.modelo
+				.sudoku
+				.casillas
+				.filter(e=>e.valorDigitado !== undefined)
+				.forEach(
+					dato =>{
+						let key =  `f${dato.fila}c${dato.columna}`;
+						let caja = $(`#${key} > :input`)[0];
+						dato.valorDigitado == dato.valor ?
+							 this.view.marcarOk(caja.id)
+							:this.view.marcarError(caja.id);
+					}
+				);
+		
+	}
+	resetear(){
+		let limpia = 
+		this.view.modelo
+				.sudoku
+				.casillas
+				.map(
+					dato =>{
+						dato.seDigito = undefined;
+						dato.valorDigitado = undefined;
+						let key =  `f${dato.fila}c${dato.columna}`;
+						!dato.visible ? 
+							$(`#${key} > :input`)[0].value = ""
+							:0;
+						return dato;
+					}
+				);
+		this.view.modelo.sudoku.casillas = limpia;		
+		this.guardarSudoku();		
+	}
 }
 
 
