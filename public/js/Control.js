@@ -40,15 +40,19 @@ class Control{
 	
 	guardarSudoku(){
 		let jsonSudoku = JSON.stringify(this.view.modelo.sudoku);
-		fetch(`http://${host}:${port}/${api}/${rutaSave}/${jsonSudoku}`,{
-			   method: "PUT",
-			}).then(res=>{
-				this.sincronizado = res.status === 200;
-				this.sincronizado ? this.view.clickOnLine()
-								  : this.view.clickOffLine();
-				this.guardarVariables();
-			});
-		
+		const worker = new Worker("js/webWorker.js");
+		worker.onmessage = evento =>{
+			this.sincronizado = evento.data === 200;
+			this.sincronizado ? (this.view.mensaje("CONEXIÓN ESTABLECIDA CON LA BASE DE DATOS"),
+									 this.view.clickOnLine())
+								  : (this.view.mensaje("NO SE HA LOGRADO CONECTAR CON LA BASE DE DATOS, SU JUEGO SERÁ GUARDADO EN CUANTO SE PUEDA SINCRONIZAR"
+													  ,"red",5000),
+									 this.view.clickOffLine());
+			this.guardarVariables();
+			accionEnCurso = false;
+			
+		}
+		worker.postMessage(jsonSudoku);
 		/*se intenta conectar y guardar, si se guarda, se pasa la sincronizado a true y se limpiar el localStorage
 		sino, se mantiene el sudoku en el localStorage
 		**/
@@ -112,7 +116,7 @@ class Control{
 						   .sudoku
 						   .casillas
 						   .filter(e=>!e.visible  && e.valor != e.valorDigitado);
-		opciones.length === 0 ? alert("agregar un mensaje bonito de que no hay pistas")
+		opciones.length === 0 ? this.view.mensaje("una pequeña pista, ya no quedan pistas","#868A08")
 							  : this.seleccionarPista(opciones);
 	}
 	seleccionarPista(opciones){
@@ -142,7 +146,7 @@ class Control{
 		
 	}
 	resetear(){
-		let limpia = 
+		this.view.modelo.sudoku.casillas =
 		this.view.modelo
 				.sudoku
 				.casillas
@@ -156,10 +160,71 @@ class Control{
 							:0;
 						return dato;
 					}
-				);
-		this.view.modelo.sudoku.casillas = limpia;		
+				);		
 		this.guardarSudoku();		
 	}
+	mostrarSolucion(){
+		this.view.modelo.sudoku.casillas =
+		this.view.modelo
+				.sudoku
+				.casillas
+				.map(
+					dato =>{
+
+						let key =  `f${dato.fila}c${dato.columna}`;
+						let caja = $(`#${key} > :input`)[0];
+						!dato.visible ? 
+							(
+								caja.value = dato.valor,
+								dato.seDigito = true,
+								dato.valorDigitado = dato.valor
+							):0;
+						$(caja).css("font-size","20px");
+						$(caja).animate({
+							"color":"purple"
+							},2500,()=>$(caja).animate({
+											"font-size":"14px",
+											"color":"blue"
+										},2500
+							));
+						return dato;
+					}
+				);	
+	}
+	
+	eventoGano(){
+		this.gano() ? 
+			 this.view.mensaje("USTED HA GANADO!!!!")
+			:this.view.mensaje("NO HAS GANADO!!! (psst! hay un botón de pistas ;) )","red",3500);
+		this.limpiarLocalStorage();
+		$("#panelBotones").fadeOut();
+		$("#jugarOtraVez").removeClass("hide");
+		
+	}
+	
+	gano(){
+		return this.view.modelo
+				.sudoku
+				.casillas
+				.every(
+					e=> e.visible || e.valorDigitado == e.valor
+				);
+	}
+	prepararSudoku(dificultad){
+		this.juegoLocal  ? this.sudokuLocal()
+				:fetch(`http://${host}:${port}/${api}/${rutaAdd}/${dificultad}`,{
+							method: 'POST',
+					})
+					  .then(res=>res.json())
+					  .then(sdk=>{
+						this.setSudoku(sdk); 
+						this.sincronizado = true;
+					  })
+					  .catch(ex=>{
+						this.sudokuLocal();
+					  });
+
+}
 }
 
 

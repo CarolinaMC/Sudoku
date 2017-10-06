@@ -16,7 +16,8 @@ const express    = require('express'),
      //mongodb    = require('mongodb'),
 	  mongoose = require("mongoose"),
       sudoku     = require("./public/js/Sudoku"),
-	  generador     = require("./public/js/Generador");
+	  generador     = require("./public/js/Generador"),
+	  timeout = require('connect-timeout');
 	  var sudokuCtrl = require('./sudokuController');
 	  
       
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({
                                     extended: true 
                             }));
 app.use(bodyParser.json({limit: "50mb"}));
+app.use(timeout('2s'));
 //app.post('/insertar', mongodb.insertar );
 console.log("app configurada");
 /**************************************************/
@@ -68,6 +70,12 @@ mongoose.connect(url,
 					 useMongoClient: true
 				 } 
 );
+
+
+const haltOnTimedout=(req, res, next)=>{
+  if (!req.timedout) next();
+}
+
 
 router.route('/game/:dificultad')
   .get(sudokuCtrl.findAllSudokus)

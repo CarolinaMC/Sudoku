@@ -43,6 +43,7 @@
                 </div>
             </div>           
     </div>
+
             <nav class="navbar navbar-expand-sm navbar" style="color: #ffffff; background: coral; opacity:0.6; box-shadow:inset 4px 4px 6px 6px #F78181;">
                 <div class="container-fluid">
                    <div class="navbar-header">
@@ -51,6 +52,7 @@
 						   id="btn_sudoku">
 								<span id="flechita" class="glyphicon glyphicon-chevron-up">SUDOKU</a>
                    </div>
+				   	
                    <ul class="nav navbar-nav">
                         <li><a class="active" 
 								id ="opcJugar" 
@@ -70,7 +72,11 @@
     <div class="tab-content">
         <!--------------------------------------------------------------------------------------------------->
         <!--- #REGLAS#--->
-        <div href="#" id="divReglas" class="tab-pane">
+		<div class="panel panel-default mensaje tab-pane" id="mensaje">
+				<div class="panel-body" id="cuerpoMensaje">HOLA</div>
+		</div>
+
+		<div href="#" id="divReglas" class="tab-pane">
             
             <div class="row">
                 <div class="col-md-12">
@@ -240,7 +246,7 @@
                             <input type="radio" name="estadoEnLinea" class="radioEstado" 
 								 checked="true" id="InLine">In-line
                         </div>
-                        <div class="btn-group-vertical">
+                        <div class="btn-group-vertical" id="panelBotones">
                             <button type="button" class="btn btn-success btn-lg active" id="buttonVerificar">Verificar Jugadas
                             </button>
                             <button type="button" class="btn btn-success btn-lg active" id="buttonGuardar">Guardar Juego
@@ -254,6 +260,15 @@
                             <button type="button" class="btn btn-info btn-lg active" id="buttonSolucion">Ver solucion
                             </button>
                         </div>
+						<div class="btn-group-vertical hide" id="jugarOtraVez">
+							<button type="button"
+									class="btn btn-success btn-lg active" 
+									id="buttonJugarDeNuevo"
+									data-toggle="modal" 
+									data-target="#myModal">
+								JUGAR DE NUEVO
+                            </button>
+						</div>
                  </div>
             </div>
 				

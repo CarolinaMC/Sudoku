@@ -57,6 +57,18 @@ img{
 	border-bottom: 1px solid coral;
 }
 
+.mensaje{
+	position:relative;
+	width:100%;
+	top:40%;
+	font-weight:bolder;
+	font-size:1.3em;
+	text-align:center;
+	color:coral;
+	opacity:second;
+}
+
+
 .caja{
 	width:100%;
 	height: 50px;

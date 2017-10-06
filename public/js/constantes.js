@@ -11,5 +11,6 @@ const path_sincronizado = "sudoku_sincronizado";
 const path_ganado = "sudoku_ganado";
 const path_sudoku = "sudoku_sudoku";
 const path_sudoku_id ="sudoku_id";
+let accionEnCurso=false;
 let control;
 

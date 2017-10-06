@@ -3,16 +3,20 @@ const cierre=()=>{
 }
 const initEventos=()=>{
    control = new Control();
+
+   
    $(".btnDificultad").click(e=>{
 	  $("#divJugar").show();
         $("#divReglas").hide();
         $("#divOpciones").hide();
         $("#divAboutus").hide();
-		prepararSudoku(
+		control.prepararSudoku(
 			e.target.id === 'btnDificil' ? dificil
 			: e.target.id === 'btnMedio' ? medio
 			: facil
 		);
+		$("#panelBotones").fadeIn();
+		$("#jugarOtraVez").addClass("hide");
 		$("#btnModalCancelar").click();
    });
    
@@ -49,28 +53,23 @@ const initEventos=()=>{
 					     );
 	$(".radioEstado").change(e=>control.ajustarLocal(e.target.checked));					 
       
-	$("#buttonGuardar").click(e=>control.guardarSudoku());  
+	$("#buttonGuardar").click(e=>{
+		accionEnCurso ? 0
+		:(
+			accionEnCurso = true,
+			control.guardarSudoku()
+		)
+	});  
 	
 	$("#buttonVerificar").click(e=>control.verificarJugadas());
 	
 	$("#buttonReset").click(e=>control.resetear());
+	
+	$("#buttonSolucion").click(e=>control.mostrarSolucion());
+	
+	$("#buttonTerminar").click(e=>control.eventoGano());
 }
 
-const prepararSudoku=(dificultad)=>{
-	control.juegoLocal  ? control.sudokuLocal()
-				:fetch(`http://${host}:${port}/${api}/${rutaAdd}/${dificultad}`,{
-							method: 'POST',
-					})
-					  .then(res=>res.json())
-					  .then(sdk=>{
-						control.setSudoku(sdk); 
-						control.sincronizado = true;
-					  })
-					  .catch(ex=>{
-						control.sudokuLocal();
-					  });
-
-}
 
 
 

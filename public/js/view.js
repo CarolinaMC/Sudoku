@@ -84,4 +84,10 @@ class View{
 	marcarPista(id){
 		this.animarCambioColor(id,'#0040FF','#F4FA58');
 	}
+	mensaje(txt="",color="coral",time=2000){
+		$("#cuerpoMensaje").html(txt);
+		$("#cuerpoMensaje").css("color",color);
+		$("#mensaje").show("slow",()=>$("#mensaje").fadeOut(time))
+	}
+	
 }

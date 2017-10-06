@@ -71,7 +71,7 @@ exports.updateSudoku =(req, res)=>{
 	SUDOKU.findOneAndUpdate(
 					{_id:sudoku._id},
 					sudoku,
-					(err,ok)=> err ? res.send(500,{estado:err})
+					(err,ok)=> err ? res.status(500).jsonp({mensaje:err})
 								   : res.status(200).jsonp({mensaje:"ok"})
 			);
 };
