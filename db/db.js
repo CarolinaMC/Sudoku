@@ -1,48 +1,49 @@
+/*
+ Primer proyecto de paradigmas de programación.
+ Sudoku.
+ II Ciclo 2017.
+ Universidad Nacional de Costa Rica.
+ Cynthia Madrigal Quesada 1-1510-0465 Grupo:10:00 a.m.
+ #
+ #
+ #
+ */
 
-var mongoose = require ("mongoose");//gestiona nuestra pagina en el servidor
-var db_lnk= 'mongodb://localhost/Sudoku';
-var db = mongoose.createConnection(db_lnk);
+let mongoose = require("mongoose");//gestiona nuestra pagina en el servidor
+let db_lnk = 'mongodb://localhost/Sudoku';
+let db = mongoose.createConnection(db_lnk);
 mongoose.Promise = global.Promise;
 
-var modelo_Sudoku=require('../models/model.js'),
-	Sudoku=db.model('sudoku', modelo_Sudoku)
-	
-var insertar=function(req, res, next){
-		var nuevoSudoku=new sudoku({
-			generador: req.body.sudoku,
-			num:req.body.sudoku,
-			ip: req.body.sudoku,
-			id:req.body.sudoku 
-		});
-		nuevoSudoku.save(onSaved);
-		function onSaved(err){
-			if(err){
-				console.log(err);
-			}else{
-				//falta poner el mensaje 			
-			}
-			
-		}
-	
-}
+let modelo_Sudoku = require('../models/model.js'),
+        Sudoku = db.model('sudoku', modelo_Sudoku);
 
- var sudokuSchema= mongoose.Schema({
-	 generador:{type: Object}, //llega el arreglo del sudoku
-	 num:{type:String},//falta
-	 ip: {type: String, required: true},//falta
-	 id:{type:String, required: true}
- });
+const insertar = (req, res, next) => {
+    let nuevoSudoku = new sudoku({
+        num: req.body.sudoku,
+        ip: req.body.sudoku,
+        id: req.body.sudoku
+    });
+    nuevoSudoku.save(onSaved);
+    var onSaved = err => {
+        console.log(err);
+    };
+};
 
- var generador = mongoose.model('Generador',sudokuSchema);
+let sudokuSchema = mongoose.Schema({
+    generador: {type: Object}, //llega el arreglo del sudoku
+    num: {type: String}, //falta
+    ip: {type: String, required: true}, //falta
+    id: {type: String, required: true}
+});
 
- //Load
- module.exports.getsudokuById = function(idSudoku){
-	 let query = generador.findOne({id:idSudoku});
-	 return query.exec(); }
+let generador = mongoose.model('Generador', sudokuSchema);
+
+//Load
+module.exports.getsudokuById = idSudoku =>
+    generador.findOne({id: idSudoku}).exec();
 
 
- //Save
- module.exports.savesudoku = function(dato, idSudoku){ //devuelvo el s junto con su id
-	 var newSudoku = new sudoku({generador:dato, id:idSudoku});
-	 return newSudoku.save();
- }
+//Save
+module.exports.savesudoku = (dato, idSudoku) =>
+    new sudoku({generador: dato, id: idSudoku}).save();
+

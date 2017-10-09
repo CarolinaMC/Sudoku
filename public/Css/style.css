@@ -1,3 +1,29 @@
+/*
+ Primer proyecto de paradigmas de programación.
+ Sudoku.
+ II Ciclo 2017.
+ Universidad Nacional de Costa Rica.
+ Cynthia Madrigal Quesada.
+ #
+ #
+ #
+ */
+body{
+    font-family: Tiza;
+    margin-bottom:10%;
+    background-image: url (imgs/sdkbg.jpg);
+
+}
+
+head{
+    font-size:.5em;	
+}
+.btn{
+    font-size:3em;
+}
+table{
+    font-size:1.2em;
+}
 .conta{  width: 900px; height: 100%; padding: 10px; clear: both; margin: 1% ;position:center;}
 
 .logo{ position: center; background-image: url(sdkbg2.jpg); background-repeat: no-repeat;background-position: absolute; background-size: contain; width: 300px; height: 75px;}
@@ -9,15 +35,9 @@
 #IDENT{
     display:inline-table;
     width:50%;
-    
+
 }
-obligatorio{
-    color:red;
-}
-body{
-    margin-bottom:10%;
-    background-image: url (imgs/sdkbg.jpg);
-}
+
 
 .cell{
     background-color:#E6E6E6;
@@ -26,15 +46,14 @@ body{
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;
-    
+    right: 0;    
 }
 .caja{
-	width:100%;
+    width:100%;
 }
 img{
-        background:url('imgs/sdkbg2.jpg');
-        background-repeat: no-repeat;
+    background:url('imgs/sdkbg2.jpg');
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     width: 100%;
@@ -42,48 +61,59 @@ img{
 }
 
 #tablero th{
-	text-align:center;
+    text-align:center;
 }
 #tablero .bordeDerecho{
-	border-right: 1px solid coral;
+    border-right: 2px solid coral;
 }
 #tablero .bordeIzquierdo{
-	border-left: 1px solid coral;
+    border-left: 2px solid coral;
 }
 #tablero .bordeSuperior{
-	border-top: 1px solid coral;
+    border-top: 2px solid coral;
 }
 #tablero .bordeInferior{
-	border-bottom: 1px solid coral;
+    border-bottom: 2px solid coral;
 }
 
 .mensaje{
-	position:relative;
-	width:100%;
-	top:40%;
-	font-weight:bolder;
-	font-size:1.3em;
-	text-align:center;
-	color:coral;
-	opacity:second;
+    position:relative;
+    width:100%;
+    top:40%;
+    font-weight:bolder;
+    font-size:1.3em;
+    text-align:center;
+    color:coral;
+    opacity:second;
 }
 
 
 .caja{
-	width:100%;
-	height: 50px;
-	opacity:second;
-	text-align:center;
-	color:blue;
+    width:100%;
+    height: 50px;
+    opacity:second;
+    text-align:center;
+    color:blue;
 }
 
 .elementoNv{
-	height:100%;
+    height:100%;
 }
 
+@font-face {
+    font-family: Tiza;
+    src: url(../fonts/tiza.ttf);
+}
 
+*,.tiza{
+    font-family:Tiza;
+}
 
-
-
-
+#barra{
+    display:inline-block;
+}
+p{
+    text-align:justify;
+    font-size:.8em;
+}
 
