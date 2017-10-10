@@ -8,7 +8,6 @@
  #
  #
  */
-
 class Numero {
     constructor(valor, fila, columna, visible = true, correcto = true) {
         this.valor = visible ? valor : 0;
