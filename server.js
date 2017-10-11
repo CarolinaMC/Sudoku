@@ -40,7 +40,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json({limit: "50mb"}));
-app.use(timeout('2s'));
+app.use(timeout('10s'));
 //app.post('/insertar', mongodb.insertar );
 console.log("app configurada");
 /**************************************************/

@@ -133,7 +133,8 @@ class Generador {
 			/*toma la primera posible jugada y la indica como un elemento de la fila*/		
             elementosDeLaFila.push(posiblesJugadas[0]);
 			/*Elemina al primer elemento de las posibles jugadas, y lo marca en el sudoku*/
-            this.marcar(fila, columna, Util.sacarPrimero(posiblesJugadas));
+            let elemento = Util.sacarPrimero(posiblesJugadas);
+            this.marcar(fila, columna, elemento);
             /*si se logro llegar a la columna 8 sin conflictos, retorna true para que
 			se siga con la siguiente fila*/
 			return Util.siSino(

@@ -58,7 +58,7 @@ exports.addSudoku = (req, res)=> {
 exports.updateSudoku = (req, res) => {
     console.log("***GUARDANDO SUDOKU***");
     let sudoku = JSON.parse(req.params.sudoku);
-    console.log(`--- ${sudoku._id}---`);
+    console.log(`---  ${sudoku._id}---`);
     SUDOKU.findOneAndUpdate(
             {_id: sudoku._id},
             sudoku,
