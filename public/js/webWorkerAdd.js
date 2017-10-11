@@ -18,6 +18,10 @@ const port = 8080;
 const api = "api";
 const host = "localhost";
 const rutaAdd="game";
+/*
+	se Conecta al servidor para hacer un post, con el cual creará un nuevo sudoku
+	el cual será retornado al cliente en formato json
+*/
 onmessage = evento =>{
 	fetch(`http://${host}:${port}/${api}/${rutaAdd}/${evento.data}`,{
 			   method: "POST"

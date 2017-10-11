@@ -16,28 +16,31 @@
 class View {
     constructor() {
     }
-
+	
+	//Método encargado de reconstruir un Sudoku en la vista
     init(sudoku) {
         this.modelo = sudoku;
         if (this.modelo === undefined)
             throw "Sudoku no recuperado correctamente del servidor";
-        this.modelo.sudoku.casillas.forEach((casillita, indice) => {
-            let key = `#f${casillita.fila}c${casillita.columna}`;
-            $(key).text("");
-
+        
+		this.modelo.sudoku.casillas.forEach((casillita, indice) => {
+            let key = `#f${casillita.fila}c${casillita.columna}`;//genera la llave
+            $(key).text("");//Recupera la posición que ocupará en la tabla
             $(key).append(
                     casillita.visible ?
-                    `<div class="elemento">${casillita.valor}</div>`
+                    `<div class="elemento">${casillita.valor}</div>`/*agrega el valor como una casilla no jugable*/
                     : (!casillita.seDigito) ?
-                    `<input  id="caja_${indice}" class="caja"/>`
-                    : `<input value="${casillita.valorDigitado}" id="caja_${indice}" class="caja"/>`
+                    `<input  id="caja_${indice}" class="caja"/>`/*casilla jugable con un valor*/
+                    : `<input value="${casillita.valorDigitado}" id="caja_${indice}" class="caja"/>`/*casilla jugable*/
 
                     );
         });
+		//se inicializa los eventos de las casillas jugables
         this.eventoCaja();
         $("#divJugar").show();
 		$("#tablero").show();
     }
+	//método encargado de evitar que se ingresen valores menores a 0, mayores a 9, o no numericos
     eventoCaja() {
         $(".caja").change(e => {//el problema de este es que espera hasta que se abandone la casilla,
             //pero si se hace cambios con el mouse los va a agarrar
@@ -60,13 +63,19 @@ class View {
             $("#" + e.target.id)[0].value = value;
         });
     }
+	//cambia el estado del checkbox de offline
     clickOffLine() {
         $("#Offline").click();
     }
+	//cambia el estado del checkbox de online
     clickOnLine() {
         $("#InLine").click();
     }
-
+	/*
+		Cambia el color de una casilla
+		Para lo cual usa jquery-ui*
+		*animate ya es parte de jquery, pero se requiere ui para modificiar los colores con el animate
+	*/
     animarCambioColor(elemento, letra, color) {
         this.animarEnSegundoPlano(
                 () => $(`#${elemento}`).animate(
@@ -83,21 +92,25 @@ class View {
             )
         );
     }
+	///recibe una accion que se ejecutará en segundo plano
     animarEnSegundoPlano(accion) {
         setTimeout(
                 () => accion(), 0
                 );
     }
-
+	//cambia una casilla a color Verde temporalmente
     marcarOk(id) {
         this.animarCambioColor(id, '#B404AE', '#81F79F');
     }
+	//cambia una casilla a color Rojo temporalmente
     marcarError(id) {
         this.animarCambioColor(id, '#4000FF', '#FA5858');
     }
+	//cambia una casilla a color Amarillo temporalmente
     marcarPista(id) {
         this.animarCambioColor(id, '#0040FF', '#F4FA58');
     }
+	//Despliega un mensaje temporal en la pantalla
     mensaje(txt = "", color = "coral", time = 4500) {
         $("#cuerpoMensaje").html(txt);
         $("#cuerpoMensaje").css("color", color);

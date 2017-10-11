@@ -14,6 +14,10 @@
 
 /* global fetch */
 
+/*
+	Envia al sudoku en formato json al servidor, por medio de una petición PUT
+	para que los cambios sean almacenados en la base de datos
+*/
 const port = 8080;
 const api = "api";
 const host = "localhost";
