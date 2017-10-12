@@ -4,12 +4,9 @@
  II Ciclo 2017.
  Universidad Nacional de Costa Rica.
  Cynthia Madrigal Quesada 1-1510-0465 Grupo:10:00 a.m..
- Greivin Rojas Hernadez 4-0211-0725 Grupo:10:00 a.m. 4-0211-0725 Grupo:10:00 a.m.
- Elena Carolina Mora Cordero 1-1553-0351 Grupo:10:00 a.m. 1-1553-0351 Grupo:10:00 a.m.
- Daniel Mora Cordero 1-1473-0950 Grupo:10:00 a.m. 1-1473-0950 Grupo:10:00 a.m.
- #
- #
- #
+ Greivin Rojas Hernandez 4-0211-0725 Grupo:10:00 a.m.  
+ Elena Carolina Mora Cordero 1-1553-0351 Grupo:10:00 a.m. 
+ Daniel Mora Cordero 1-1473-0950 Grupo:10:00 a.m. 
  */
 
 /* global control, dificil, medio, facil, path_sudoku_id, path_sincronizado, path_ganado, path_sudoku, rutaGetById, host, fetch, port, api, rutaAdd */
@@ -61,7 +58,10 @@ class Control {
             accionEnCurso = false;//bandera para evitar que se le de varios clicks al boton de guardar
 
         };
-        worker.postMessage(jsonSudoku);
+		$("#InLine")[0].checked ? worker.postMessage(jsonSudoku)
+								: (this.guardarVariables(),
+								   this.sincronizado = accionEnCurso = false,
+								   this.view.mensaje("SUDOKU ALMACENADO DE MANERA LOCAL"));
         /*se intenta conectar y guardar, si se guarda, se pasa la sincronizado a true y se limpiar el localStorage
          sino, se mantiene el sudoku en el localStorage
          **/
@@ -108,19 +108,24 @@ class Control {
 	
 	//Obtiene un sudoku por medio del id 
     getSudoku(id) {
-        fetch(`http://${host}:${port}/${api}/${rutaGetById}/${id}`, {
-            method: 'GET'
-        })
-                .then(res => res.json())
-                .then(sdk => {
-                    this.setSudoku(sdk);
-                    this.view.clickOnLine();
-                    this.sincronizado = true;
-                })
-                .catch(ex => {
-                    this.view.clickOffLine();
-                    this.sudokuLocal();
-                });
+		$("#InLine")[0].checked ? 	
+		   fetch(`http://${host}:${port}/${api}/${rutaGetById}/${id}`, {
+				method: 'GET'
+			})
+					.then(res => res.json())
+					.then(sdk => {
+						this.setSudoku(sdk);
+						this.view.clickOnLine();
+						this.sincronizado = true;
+					})
+					.catch(ex => {
+						this.view.clickOffLine();
+						this.sudokuLocal();
+					})
+			: (
+				this.view.clickOffLine(),
+				this.sudokuLocal()
+			)	
     }
 	//verifica las casillas no jugadas o erroneas para poner el valor correcto a la casilla
     pedirPista() {
@@ -219,7 +224,10 @@ class Control {
         this.gano() ?
                 this.view.mensaje(mensajeGano)
                 : this.view.mensaje(mensajeNoGano, "red");
-        this.limpiarLocalStorage();
+                this.limpiarLocalStorage();
+		this.sincronizado = true;
+		this.juegoLocal = false;
+		this.view.clickOnLine();
         $("#panelBotones").fadeOut();
         $("#jugarOtraVez").removeClass("hide");
 
@@ -238,6 +246,14 @@ class Control {
 	//el cual será enviado al cliente
 	//Si la conexión falla, el sudoku intentará generarse localemente
     prepararSudoku(dificultad) {
+		const generarLocal=(difi)=>{
+			let generador = new Generador();
+			let sudoku = new Sudoku(generador,difi);
+			sudoku._id = new Date().getTime();
+			localStorage.setItem(path_sudoku, JSON.stringify(sudoku));
+			this.sudokuLocal();
+		
+		}
 		const worker = new Worker("js/webWorkerAdd.js");
 		worker.onmessage = evento =>{
 			const respuestaOk=sdk=>{
@@ -245,17 +261,15 @@ class Control {
                 this.sincronizado = true;
 			}
 			const respuestaFallida=res=>{
-				let generador = new Generador();
-				let sudoku = new Sudoku(generador,dificultad);
-				sudoku._id = new Date().getTime();
-				localStorage.setItem(path_sudoku, JSON.stringify(sudoku));
-				this.sudokuLocal();
+				generarLocal(dificultad)
 			}
 			evento.data === 500 ? respuestaFallida()
 								: respuestaOk(evento.data);
 		}
-		this.juegoLocal ? this.sudokuLocal()
-						: worker.postMessage(dificultad);
+		$("#InLine")[0].checked ? (this.juegoLocal ? this.sudokuLocal()
+													: worker.postMessage(dificultad)
+									)
+								:generarLocal(dificultad);	
     }
 }
 

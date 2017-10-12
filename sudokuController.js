@@ -7,11 +7,9 @@
  Greivin Rojas Hernadez 4-0211-0725 Grupo:10:00 a.m. 4-0211-0725 Grupo:10:00 a.m.
  Elena Carolina Mora Cordero 1-1553-0351 Grupo:10:00 a.m. 1-1553-0351 Grupo:10:00 a.m.
  Daniel Mora Cordero 1-1473-0950 Grupo:10:00 a.m. 1-1473-0950 Grupo:10:00 a.m.
- #
- #
- #
  */
-
+ 
+ 
 let SUDOKU = require('./models/model');
 Sudoku = require("./public/js/Sudoku").Sudoku,
         Generador = require("./public/js/Generador").Generador;
@@ -86,8 +84,9 @@ exports.updateSudoku = (req, res) => {
     SUDOKU.findOneAndUpdate(
             {_id: sudoku._id},
             sudoku,
-            (err, ok) => err ? res.status(500).jsonp({mensaje: err})
-                : res.status(200).jsonp({mensaje: "ok"})
+			{upsert:true},
+            (err, ok) => err ? res.status(500).send(err.message)
+							: res.status(200).jsonp({mensaje: "ok"})
     );
 };
 
@@ -99,6 +98,7 @@ exports.updateSudoku = (req, res) => {
  *        500 en caso de algún fallo.
  */
 exports.deleteSudoku = (req, res)=> {
+	console.log("limpiando la base de datos");
     SUDOKU.findById(req.params.id, (err, sudoku)=>{
         sudoku.remove( err=> 
             err ? res.status(500).send(err.message)

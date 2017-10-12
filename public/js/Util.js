@@ -1,16 +1,4 @@
-/*
- Primer proyecto de paradigmas de programación.
- Sudoku.
- II Ciclo 2017.
- Universidad Nacional de Costa Rica.
- Cynthia Madrigal Quesada 1-1510-0465 Grupo:10:00 a.m.
- Greivin Rojas Hernadez 4-0211-0725 Grupo:10:00 a.m. 4-0211-0725 Grupo:10:00 a.m.
- Elena Carolina Mora Cordero 1-1553-0351 Grupo:10:00 a.m. 1-1553-0351 Grupo:10:00 a.m.
- Daniel Mora Cordero 1-1473-0950 Grupo:10:00 a.m. 1-1473-0950 Grupo:10:00 a.m.
- #
- #
- #
- */
+
 
 class Util {
     /**
@@ -47,7 +35,7 @@ class Util {
                     : desordenarAux(
                             array.concat(
                                     array.splice(
-                                            Util.rand(0, indice), 1))
+                                            Util.rand(0, indice+1), 1))
                             , indice - 1
                             );
                     
